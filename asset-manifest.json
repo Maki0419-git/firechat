@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/firechat/static/css/main.6de3a8a3.chunk.css",
-    "main.js": "/firechat/static/js/main.601118fd.chunk.js",
-    "main.js.map": "/firechat/static/js/main.601118fd.chunk.js.map",
+    "main.js": "/firechat/static/js/main.1d5bfd45.chunk.js",
+    "main.js.map": "/firechat/static/js/main.1d5bfd45.chunk.js.map",
     "runtime-main.js": "/firechat/static/js/runtime-main.a08d40c6.js",
     "runtime-main.js.map": "/firechat/static/js/runtime-main.a08d40c6.js.map",
     "static/js/2.df39785c.chunk.js": "/firechat/static/js/2.df39785c.chunk.js",
@@ -22,6 +22,6 @@
     "static/js/runtime-main.a08d40c6.js",
     "static/js/2.df39785c.chunk.js",
     "static/css/main.6de3a8a3.chunk.css",
-    "static/js/main.601118fd.chunk.js"
+    "static/js/main.1d5bfd45.chunk.js"
   ]
 }
