@@ -8,14 +8,22 @@
   font-size: 16px;
   font-weight: 600;
 }
+.NavText{
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 25px;
+  font-weight: 600;
+  color: white;
+  padding-left: 10px;
+  padding-top: 5px;
+}
 @keyframes dropIn {
-  20%{
+  0%{
     opacity: 0;
-    transform: translateY(-20%);
+    transform: translateY(-100px) translateX(0px);
   }
-  30%,100%{
+  100%{
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0px) translateX(0px);
   }
 }
 .container_column{
@@ -49,20 +57,23 @@ transform: translateY(20%);
 
 .emailIcon{
   height: 100px;
-  animation: flyThrough 4s ease forwards    ;
+  animation: flyThrough 4s ease forwards  infinite  ;
 }
 @keyframes flyThrough {
-  20%{
+  0%,100%{
     opacity: 0;
-    transform: translateY(100%) translateX(-100%);
   }
-  30%,80%{
-    opacity: 1;
-    transform: translateY(-150%) translateX(100%) ;
+  30%{
+    opacity:1;
+  }
+
+  0%{
+    transform: translateY(812px) translateX(-100px);
   }
   100%{
-    opacity: 0;
+    transform: translateY(0px) translateX(275px);
   }
+
 }
 
 .cloudIcon{
@@ -75,4 +86,21 @@ transform: translateY(20%);
 
 .cloudIcon path{
   fill: "white";
+}
+
+.sendIcon{
+  height: 25px;
+  width: 25px;
+}
+
+.sent{
+  display: flex;
+  justify-content: flex-end;
+  margin:10px;
+}
+
+.receive{
+  display: flex;
+  justify-content: flex-start;
+  margin:10px;
 }

@@ -8,17 +8,17 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { ReactComponent as Chat } from "../chat.svg";
 import { ReactComponent as Email } from "../email.svg";
-import { ReactComponent as Cloud } from "../cloud.svg";
+
 import { ReactComponent as Google } from "../google.svg";
-import { ReactComponent as FB } from "../facebook.svg";
+import { ReactComponent as Github } from "../github.svg";
 export default function SignIn() {
 
     function SignInWithGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider();
         auth.signInWithPopup(provider)
     }
-    function SignInWithFB() {
-        const provider = new firebase.auth.FacebookAuthProvider();
+    function SignInWithGitHub() {
+        const provider = new firebase.auth.GithubAuthProvider();
         auth.signInWithPopup(provider)
     }
     const useStyles = makeStyles((theme) => ({
@@ -30,8 +30,8 @@ export default function SignIn() {
 
         },
         facebook: {
-            backgroundColor: "steelblue",
-            border: "5px solid steelblue",
+            backgroundColor: "black",
+            border: "5px solid black",
             borderRadius: 20,
             margin: 10,
             color: "white",
@@ -48,9 +48,9 @@ export default function SignIn() {
 
             </div>
             <div style={{ display: "flex", flex: 1, alignItems: "flex-end", justifyContent: "center", }}>
-                <div>
-                    <Typography ><span className="MainText">Let's Chat!</span></Typography>
-                </div>
+
+                <span className="MainText">Let's Chat!</span>
+
 
             </div>
             <div style={{ display: "flex", flex: 2, alignItems: "center", justifyContent: "center" }}>
@@ -62,8 +62,8 @@ export default function SignIn() {
                     startIcon={<Google className="logoIcon" />}
                     onClick={SignInWithGoogle}><span className="loginText">Sign In With Google  </span></Button>
                 <Button variant="contained" className={classes.facebook}
-                    startIcon={<FB className="logoIcon" fill="white" />}
-                    onClick={SignInWithFB}><span className="loginText" >Sign In With FaceBook</span></Button>
+                    startIcon={<Github className="logoIcon" fill="white" />}
+                    onClick={SignInWithGitHub}><span className="loginText" >Sign In With GitHub</span></Button>
             </div>
 
         </Container>
