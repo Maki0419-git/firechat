@@ -1,27 +1,28 @@
 {
   "files": {
-    "main.css": "/firechat/static/css/main.6de3a8a3.chunk.css",
-    "main.js": "/firechat/static/js/main.1d5bfd45.chunk.js",
-    "main.js.map": "/firechat/static/js/main.1d5bfd45.chunk.js.map",
-    "runtime-main.js": "/firechat/static/js/runtime-main.a08d40c6.js",
-    "runtime-main.js.map": "/firechat/static/js/runtime-main.a08d40c6.js.map",
-    "static/js/2.df39785c.chunk.js": "/firechat/static/js/2.df39785c.chunk.js",
-    "static/js/2.df39785c.chunk.js.map": "/firechat/static/js/2.df39785c.chunk.js.map",
-    "static/js/3.edff69e2.chunk.js": "/firechat/static/js/3.edff69e2.chunk.js",
-    "static/js/3.edff69e2.chunk.js.map": "/firechat/static/js/3.edff69e2.chunk.js.map",
+    "main.css": "/firechat/static/css/main.9841786b.chunk.css",
+    "main.js": "/firechat/static/js/main.1d5d1be8.chunk.js",
+    "main.js.map": "/firechat/static/js/main.1d5d1be8.chunk.js.map",
+    "runtime-main.js": "/firechat/static/js/runtime-main.5c75ca50.js",
+    "runtime-main.js.map": "/firechat/static/js/runtime-main.5c75ca50.js.map",
+    "static/js/2.2fb1b00e.chunk.js": "/firechat/static/js/2.2fb1b00e.chunk.js",
+    "static/js/2.2fb1b00e.chunk.js.map": "/firechat/static/js/2.2fb1b00e.chunk.js.map",
+    "static/js/3.c0d9734e.chunk.js": "/firechat/static/js/3.c0d9734e.chunk.js",
+    "static/js/3.c0d9734e.chunk.js.map": "/firechat/static/js/3.c0d9734e.chunk.js.map",
     "index.html": "/firechat/index.html",
-    "static/css/main.6de3a8a3.chunk.css.map": "/firechat/static/css/main.6de3a8a3.chunk.css.map",
-    "static/js/2.df39785c.chunk.js.LICENSE.txt": "/firechat/static/js/2.df39785c.chunk.js.LICENSE.txt",
+    "static/css/main.9841786b.chunk.css.map": "/firechat/static/css/main.9841786b.chunk.css.map",
+    "static/js/2.2fb1b00e.chunk.js.LICENSE.txt": "/firechat/static/js/2.2fb1b00e.chunk.js.LICENSE.txt",
     "static/media/chat.76904438.svg": "/firechat/static/media/chat.76904438.svg",
-    "static/media/cloud.9ad81450.svg": "/firechat/static/media/cloud.9ad81450.svg",
     "static/media/email.05d086a8.svg": "/firechat/static/media/email.05d086a8.svg",
-    "static/media/facebook.1e4e4ffa.svg": "/firechat/static/media/facebook.1e4e4ffa.svg",
-    "static/media/google.9789d1e5.svg": "/firechat/static/media/google.9789d1e5.svg"
+    "static/media/github.bb7ad8ab.svg": "/firechat/static/media/github.bb7ad8ab.svg",
+    "static/media/google.9789d1e5.svg": "/firechat/static/media/google.9789d1e5.svg",
+    "static/media/logout.b382cc9b.svg": "/firechat/static/media/logout.b382cc9b.svg",
+    "static/media/plane.ee9b5c8a.svg": "/firechat/static/media/plane.ee9b5c8a.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.a08d40c6.js",
-    "static/js/2.df39785c.chunk.js",
-    "static/css/main.6de3a8a3.chunk.css",
-    "static/js/main.1d5bfd45.chunk.js"
+    "static/js/runtime-main.5c75ca50.js",
+    "static/js/2.2fb1b00e.chunk.js",
+    "static/css/main.9841786b.chunk.css",
+    "static/js/main.1d5d1be8.chunk.js"
   ]
 }
