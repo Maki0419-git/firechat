@@ -5,7 +5,6 @@ import firebase from "firebase";
 import "../index.css";
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
 import { ReactComponent as Chat } from "../chat.svg";
 import { ReactComponent as Email } from "../email.svg";
 
@@ -13,13 +12,19 @@ import { ReactComponent as Google } from "../google.svg";
 import { ReactComponent as Github } from "../github.svg";
 export default function SignIn() {
 
-    function SignInWithGoogle() {
+    async function SignInWithGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider();
-        auth.signInWithPopup(provider)
+        try {
+            await auth.signInWithPopup(provider)
+
+        } catch (e) { console.log("e:" + e) }
     }
-    function SignInWithGitHub() {
+    async function SignInWithGitHub() {
         const provider = new firebase.auth.GithubAuthProvider();
-        auth.signInWithPopup(provider)
+        try {
+            await auth.signInWithPopup(provider)
+
+        } catch (e) { console.log("e:" + e) }
     }
     const useStyles = makeStyles((theme) => ({
         google: {

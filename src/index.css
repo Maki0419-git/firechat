@@ -101,6 +101,7 @@ transform: translateY(20%);
 
 .receive{
   display: flex;
-  justify-content: flex-start;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
   margin:10px;
 }

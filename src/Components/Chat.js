@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { auth, db } from "../firebase";
+import { auth, db, } from "../firebase";
 import SignOut from "./SignOut";
 import SendMessage from "./SendMessage";
 import Container from '@material-ui/core/Container';
@@ -29,43 +29,26 @@ export default function Chat() {
     }, [])
 
 
-    function Message({ data }) {
 
-        if (data.uid === auth.currentUser.uid) {
-            return (
-                <div className={"sent"} key={data.id} >
-                    <Box borderRadius={16} {...defaultProps}>
-                        <p style={{ paddingLeft: 10, paddingRight: 10 }}>{data.text}</p>
-                    </Box>
-                    <img src={data.photoURL} alt="" style={{ borderRadius: "50%", width: 50, height: 50 }} />
-                </div>
-            )
-        } else {
-            return (
-                <div className={"receive"} key={data.id} >
-                    <img src={data.photoURL} alt="" style={{ borderRadius: "50%", width: 50, height: 50 }} />
-                    <Box borderRadius={16} {...defaultProps}>
-                        <p style={{ paddingLeft: 10, paddingRight: 10 }}>{data.text}</p>
-                    </Box>
-                </div>
-            )
-        }
-
-    }
 
     return (
         <Container style={{ height: '100vh', display: "flex", flexDirection: "column", padding: 0 }}>
 
-            <div style={{ display: "flex", flex: 1.5, flexDirection: "column", backgroundColor: "steelblue", justifyContent: "center" }}>
+            <div style={{ position: "fixed", width: "100%", backgroundColor: "steelblue", justifyContent: "center" }}>
                 <SignOut />
 
             </div>
-            <div style={{ display: "flex", flex: 17, flexDirection: "column" }}>
+            <div style={{ display: "flex", flex: 17, flexDirection: "column", paddingBottom: 30, paddingTop: 50 }}>
 
-                {messages.map((data) => (
+                {messages.map(({ id, text, photoURL, uid }) => (
 
 
-                    <Message data={data} />
+                    <div className={uid === auth.currentUser.uid ? "sent" : "receive"} key={id} >
+                        <Box borderRadius={16} {...defaultProps}>
+                            <p style={{ paddingLeft: 10, paddingRight: 10 }}>{text}</p>
+                        </Box>
+                        <img src={photoURL} alt="" style={{ borderRadius: "50%", width: 50, height: 50 }} />
+                    </div>
 
 
 
@@ -75,10 +58,13 @@ export default function Chat() {
 
             </div>
 
-            <div style={{ display: "flex", flex: 2, justifyContent: "center", flexDirection: "column", backgroundColor: "steelblue" }}>
+
+            <div style={{
+                backgroundColor: "steelblue", position: "fixed", bottom: 0, width: "100%"
+            }}>
                 <SendMessage scroll={scroll} />
             </div>
-
+            <div ref={scroll}></div>
         </Container>
         // <div>
         //     <SendMessage scroll={scroll} />

@@ -1,7 +1,7 @@
 import firebase from "firebase";
 
-const config = {
-    apiKey: "AIzaSyBHboU756ZXtRtGkQFLFKRdLJDLKKxge-Y",
+export const config = {
+    apiKey: process.env.REACT_APP_Firebase,
     authDomain: "firechat-879f4.firebaseapp.com",
     projectId: "firechat-879f4",
     storageBucket: "firechat-879f4.appspot.com",
