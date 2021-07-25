@@ -23,7 +23,7 @@
   }
   100%{
     opacity: 1;
-    transform: translateY(0px) translateX(0px);
+    transform: translateY(-20px) translateX(0px);
   }
 }
 .container_column{
@@ -71,7 +71,7 @@ transform: translateY(20%);
     transform: translateY(812px) translateX(-100px);
   }
   100%{
-    transform: translateY(0px) translateX(275px);
+    transform: translateY(0px) translateX(265px);
   }
 
 }
@@ -109,3 +109,4 @@ transform: translateY(20%);
 .background{
   background-image: url("https://images.unsplash.com/photo-1517495306984-f84210f9daa8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80");
 }
+
