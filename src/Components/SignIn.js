@@ -24,7 +24,7 @@ export default function SignIn() {
         try {
             await auth.signInWithPopup(provider)
 
-        } catch (e) { console.log("e:" + e) }
+        } catch (e) { console.log("e:" + e.code) }
     }
     const useStyles = makeStyles((theme) => ({
         google: {

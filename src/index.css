@@ -105,3 +105,7 @@ transform: translateY(20%);
   justify-content: flex-end;
   margin:10px;
 }
+
+.background{
+  background-image: url("https://images.unsplash.com/photo-1517495306984-f84210f9daa8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80");
+}
