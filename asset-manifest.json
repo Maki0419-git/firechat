@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/firechat/static/css/main.9e6014a8.chunk.css",
-    "main.js": "/firechat/static/js/main.21c4d0ac.chunk.js",
-    "main.js.map": "/firechat/static/js/main.21c4d0ac.chunk.js.map",
+    "main.css": "/firechat/static/css/main.823d0fb6.chunk.css",
+    "main.js": "/firechat/static/js/main.d262c8d2.chunk.js",
+    "main.js.map": "/firechat/static/js/main.d262c8d2.chunk.js.map",
     "runtime-main.js": "/firechat/static/js/runtime-main.3e66321b.js",
     "runtime-main.js.map": "/firechat/static/js/runtime-main.3e66321b.js.map",
     "static/js/2.09016770.chunk.js": "/firechat/static/js/2.09016770.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.bed0959c.chunk.js": "/firechat/static/js/3.bed0959c.chunk.js",
     "static/js/3.bed0959c.chunk.js.map": "/firechat/static/js/3.bed0959c.chunk.js.map",
     "index.html": "/firechat/index.html",
-    "static/css/main.9e6014a8.chunk.css.map": "/firechat/static/css/main.9e6014a8.chunk.css.map",
+    "static/css/main.823d0fb6.chunk.css.map": "/firechat/static/css/main.823d0fb6.chunk.css.map",
     "static/js/2.09016770.chunk.js.LICENSE.txt": "/firechat/static/js/2.09016770.chunk.js.LICENSE.txt",
     "static/media/chat.76904438.svg": "/firechat/static/media/chat.76904438.svg",
     "static/media/email.05d086a8.svg": "/firechat/static/media/email.05d086a8.svg",
@@ -23,7 +23,7 @@
   "entrypoints": [
     "static/js/runtime-main.3e66321b.js",
     "static/js/2.09016770.chunk.js",
-    "static/css/main.9e6014a8.chunk.css",
-    "static/js/main.21c4d0ac.chunk.js"
+    "static/css/main.823d0fb6.chunk.css",
+    "static/js/main.d262c8d2.chunk.js"
   ]
 }
