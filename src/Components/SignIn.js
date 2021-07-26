@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from '@material-ui/core/Button';
 import { auth } from "../firebase";
 import firebase from "firebase";
@@ -12,18 +12,34 @@ import { ReactComponent as Email } from "../email.svg";
 import { ReactComponent as Google } from "../google.svg";
 import { ReactComponent as Github } from "../github.svg";
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import Message from "./Message";
 import Sign from "./SignUp";
 export default function SignIn() {
 
     const [signup, setSignUp] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [messageOpen, setMessageOpen] = useState(false);
+    const [message, setMessage] = useState("")
     const [
         signInWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+
+    useEffect(() => {
+        if (error) {
+            if (error.code === "auth/invalid-email") {
+                setMessage("不正確的信箱格式")
+                setMessageOpen(true)
+            }
+            else if (error.code === "auth/wrong-password") {
+                setMessage("密碼錯誤")
+                setMessageOpen(true)
+            }
+        }
+    }, [error])
 
     console.log(error);
     async function SignInWithGoogle() {
@@ -95,8 +111,8 @@ export default function SignIn() {
             </div>
 
             <div style={{ display: "flex", flex: 4, alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
-                <InputBase placeholder="帳號" className={classes.input} value={email} onChange={(e) => setEmail(e.target.value)} />
-                <InputBase placeholder="密碼" className={classes.input} value={password} onChange={(e) => setPassword(e.target.value)} />
+                <InputBase placeholder="帳號" className={classes.input} value={email} onChange={(e) => setEmail(e.target.value)} error={true} />
+                <InputBase placeholder="密碼" className={classes.input} value={password} onChange={(e) => setPassword(e.target.value)} password />
                 <div style={{ display: "flex", flexDirection: "row", margin: 10 }}>
                     <Button variant="contained" color="primary" className={classes.btn} onClick={() => signInWithEmailAndPassword(email, password)}>
                         登入
@@ -114,6 +130,7 @@ export default function SignIn() {
                     onClick={SignInWithGitHub}><span className="loginText" >Sign In With GitHub</span></Button>
             </div>
             <Sign signup={signup} setSignUp={setSignUp} />
+            <Message messageOpen={messageOpen} setMessageOpen={setMessageOpen} message={message} />
         </Container>
     )
 }

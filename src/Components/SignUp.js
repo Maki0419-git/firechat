@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -12,29 +12,30 @@ import firebase from "firebase";
 export default function SignUp({ signup, setSignUp }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [emailAlert, setEmailAlert] = useState("");
+    const [emailWrong, setEnailWrong] = useState(false);
+    const [passwordAlert, setPasswordAlert] = useState("");
+    const [passwordWrong, setPasswordWrong] = useState(false);
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
-    if (error) {
-        return (
-            <div>
-                <p>Error: {error.message}</p>
-            </div>
-        );
-    }
-    if (loading) {
-        return <p>Loading...</p>;
-    }
-    if (user) {
-        return (
-            <div>
-                <p>Registered User: {user.email}</p>
-            </div>
-        );
-    }
+
+
+    useEffect(() => {
+        if (error) {
+            if (error.code === "auth/invalid-email") {
+                setEmailAlert("不正確的信箱格式")
+                setEnailWrong(true)
+            } else if (error.code === "auth/weak-password") {
+                setPasswordAlert("密碼長度需為6個字元以上")
+                setPasswordWrong(true)
+            }
+        }
+    }, [error])
+
     return (
         <div>
 
@@ -45,6 +46,7 @@ export default function SignUp({ signup, setSignUp }) {
                 <DialogContent>
 
                     <TextField
+                        error={emailWrong}
                         autoFocus
                         margin="dense"
                         id="name"
@@ -53,8 +55,11 @@ export default function SignUp({ signup, setSignUp }) {
                         fullWidth
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        helperText={emailAlert}
                     />
                     <TextField
+                        error={passwordWrong}
+                        helperText={passwordAlert}
                         autoFocus
                         margin="dense"
                         id="pass"
