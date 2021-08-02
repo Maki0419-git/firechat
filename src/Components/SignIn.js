@@ -29,6 +29,7 @@ export default function SignIn() {
     ] = useSignInWithEmailAndPassword(auth);
 
     useEffect(() => {
+        console.log(error)
         if (error) {
             if (error.code === "auth/invalid-email") {
                 setMessage("不正確的信箱格式")
@@ -41,7 +42,7 @@ export default function SignIn() {
         }
     }, [error])
 
-    console.log(error);
+
     async function SignInWithGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider();
         try {
@@ -112,7 +113,7 @@ export default function SignIn() {
 
             <div style={{ display: "flex", flex: 4, alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
                 <InputBase placeholder="帳號" className={classes.input} value={email} onChange={(e) => setEmail(e.target.value)} error={true} />
-                <InputBase placeholder="密碼" className={classes.input} value={password} onChange={(e) => setPassword(e.target.value)} password />
+                <InputBase placeholder="密碼" className={classes.input} value={password} onChange={(e) => setPassword(e.target.value)} password="true" />
                 <div style={{ display: "flex", flexDirection: "row", margin: 10 }}>
                     <Button variant="contained" color="primary" className={classes.btn} onClick={() => signInWithEmailAndPassword(email, password)}>
                         登入

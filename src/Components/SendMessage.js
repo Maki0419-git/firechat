@@ -9,7 +9,8 @@ export default function SendMessage({ scroll }) {
 
     async function sendMessage(e) {
         e.preventDefault()
-        const { uid, photoURL } = auth.currentUser;
+        const { uid, photoURL, displayName } = auth.currentUser;
+        console.log(displayName);
         await db.collection("messages").add({
             text: message,
             uid,
