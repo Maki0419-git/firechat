@@ -99,7 +99,8 @@ export default function SignIn() {
     const classes = useStyles();
 
     return (
-        <Container style={{ backgroundColor: '#cfe8fc', height: '100vh', display: "flex", flexDirection: "column" }}>
+        <Container style={{ backgroundColor: '#cfe8fc', display: "flex", flexDirection: "column", height: "100vh" }}>
+            {console.log(window.innerHeight)}
 
             <div style={{ display: "flex", flex: 0.5, justifyContent: "flex-start", flexDirection: "row", }}>
                 <Email className="emailIcon" />

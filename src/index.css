@@ -68,7 +68,7 @@ transform: translateY(20%);
   }
 
   0%{
-    transform: translateY(812px) translateX(-100px);
+    transform: translateY(612px) translateX(-100px);
   }
   100%{
     transform: translateY(0px) translateX(265px);
