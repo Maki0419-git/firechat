@@ -99,20 +99,20 @@ export default function SignIn() {
     const classes = useStyles();
 
     return (
-        <Container style={{ backgroundColor: '#cfe8fc', display: "flex", flexDirection: "column", height: "100vh" }}>
+        <div style={{ backgroundColor: '#cfe8fc', display: "flex", flexDirection: "column", height: "100vh" }}>
             {console.log(window.innerHeight)}
 
-            <div style={{ display: "flex", flex: 0.5, justifyContent: "flex-start", flexDirection: "row", }}>
+            <div>
                 <Email className="emailIcon" />
             </div>
             <div style={{ display: "flex", flex: 1, alignItems: "flex-end", justifyContent: "center", }}>
                 <span className="MainText">Let's Chat!</span>
             </div>
-            <div style={{ display: "flex", flex: 2, alignItems: "center", justifyContent: "center" }}>
+            <div style={{ display: "flex", flex: 3, alignItems: "center", justifyContent: "center" }}>
                 <Chat className="mainIcon" />
             </div>
 
-            <div style={{ display: "flex", flex: 4, alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
+            <div style={{ display: "flex", flex: 5, alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
                 <InputBase placeholder="帳號" className={classes.input} value={email} onChange={(e) => setEmail(e.target.value)} error={true} />
                 <InputBase placeholder="密碼" className={classes.input} value={password} onChange={(e) => setPassword(e.target.value)} password="true" />
                 <div style={{ display: "flex", flexDirection: "row", margin: 10 }}>
@@ -133,6 +133,6 @@ export default function SignIn() {
             </div>
             <Sign signup={signup} setSignUp={setSignUp} />
             <Message messageOpen={messageOpen} setMessageOpen={setMessageOpen} message={message} />
-        </Container>
+        </div >
     )
 }

@@ -41,22 +41,23 @@ body {
 
 .mainIcon{
  height: 200px;
- animation: fadeInUp 3s;
+ animation: fadeInUp 4s;
 }
 
 @keyframes fadeInUp {
-  from{
-opacity: 0;
-transform: translateY(20%);
-  }to{
+  0%{
+    opacity: 0;
+    transform: translateY(-100px) translateX(0px);
+  }
+  100%{
     opacity: 1;
-    transform: translateY(0%);
+    transform: translateY(0px) translateX(0px);
   }
   
 }
 
 .emailIcon{
-  height: 100px;
+  height: 80px;
   animation: flyThrough 4s ease forwards  infinite  ;
 }
 @keyframes flyThrough {
