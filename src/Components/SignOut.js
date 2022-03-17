@@ -1,21 +1,31 @@
 
-import { ReactComponent as Logout } from "../logout.svg";
+import { ReactComponent as Logout } from "../img/logout.svg";
 import React from "react";
-import { auth } from "../firebase";
+import { auth } from "../firebaseConfig";
 import "../index.css";
 import { IconButton } from "@material-ui/core";
-export default function SignOut() {
-    return (
-        <div style={{ display: "flex", flexDirection: "row" }}>
-            <div style={{ display: "flex", flex: 4, justifyContent: "center" }}>
-                <span className="NavText">Let's Chat!</span>
-            </div>
-            <div style={{ display: "flex", flex: 6, justifyContent: "center" }}>
+import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 
-            </div>
-            <div style={{ display: "flex", flex: 1, justifyContent: "center" }}>
-                <IconButton onClick={() => auth.signOut()}><Logout className="sendIcon" fill="white" /></IconButton>
-            </div>
-        </div>
+export default function SignOut() {
+    const useStyles = makeStyles((theme) => ({
+        container: {
+            position: "fixed",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: 1,
+            backgroundColor: "steelblue",
+            zIndex: 2,
+            width: "100%",
+            height: "8vh",
+        }
+    }));
+    const classes = useStyles();
+    return (
+        <Box className={classes.container}>
+            <span className="NavText">Let's Chat!</span>
+            <IconButton onClick={() => auth.signOut()}><Logout className="sendIcon" fill="white" /></IconButton>
+        </Box>
     )
 }

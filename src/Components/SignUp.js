@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
-import { auth } from "../firebase";
+import { auth } from "../firebaseConfig";
 import firebase from "firebase";
 export default function SignUp({ signup, setSignUp }) {
     const [email, setEmail] = useState('');

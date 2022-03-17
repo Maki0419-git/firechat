@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Button from '@material-ui/core/Button';
-import { auth } from "../firebase";
+import Box from '@material-ui/core/Box';
+import { auth } from "../firebaseConfig";
 import firebase from "firebase";
 import "../index.css";
 import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
-import Container from '@material-ui/core/Container';
-import { ReactComponent as Chat } from "../chat.svg";
-import { ReactComponent as Email } from "../email.svg";
-import { ReactComponent as Google } from "../google.svg";
-import { ReactComponent as Github } from "../github.svg";
+import { ReactComponent as Chat } from "../img/chat.svg";
+import { ReactComponent as Email } from "../img/email.svg";
+import { ReactComponent as Google } from "../img/google.svg";
+import { ReactComponent as Github } from "../img/github.svg";
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import Message from "./Message";
 import Sign from "./SignUp";
@@ -60,12 +60,25 @@ export default function SignIn() {
 
 
     const useStyles = makeStyles((theme) => ({
+        container: {
+            [theme.breakpoints.up('600')]: {
+                width: "40%",
+            },
+            width: "70%",
+            display: "flex",
+            flex: 5,
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+        },
         google: {
             backgroundColor: "white",
             border: "5px solid white",
             borderRadius: 20,
             margin: 10,
-
+            "&:hover": {
+                backgroundColor: 'white',
+            }
         },
         facebook: {
             backgroundColor: "black",
@@ -73,10 +86,12 @@ export default function SignIn() {
             borderRadius: 20,
             margin: 10,
             color: "white",
-
+            "&:hover": {
+                backgroundColor: 'black',
+            }
         },
         input: {
-            width: "65%",
+            width: "100%",
             margin: 5,
             backgroundColor: "white", padding: 4, border: "2px solid white",
             borderRadius: "20px",
@@ -87,7 +102,8 @@ export default function SignIn() {
             paddingLeft: 40,
             paddingRight: 40,
             margin: 5,
-            borderRadius: 10
+            borderRadius: 10,
+            flex: 5,
         },
 
         divider: {
@@ -99,23 +115,17 @@ export default function SignIn() {
     const classes = useStyles();
 
     return (
-        <div style={{ backgroundColor: '#cfe8fc', display: "flex", flexDirection: "column", height: "100vh" }}>
-            {console.log(window.innerHeight)}
-
-            <div>
-                <Email className="emailIcon" />
-            </div>
-            <div style={{ display: "flex", flex: 1, alignItems: "flex-end", justifyContent: "center", }}>
+        <Box style={{ overflow: "hidden", backgroundColor: '#cfe8fc', display: "flex", justifyContent: 'center', alignItems: 'center', flexDirection: "column", height: "100vh", width: "100%", position: "relative" }}>
+            <div style={{ display: "flex", flex: 2, alignItems: "center", justifyContent: "center", }}>
                 <span className="MainText">Let's Chat!</span>
             </div>
-            <div style={{ display: "flex", flex: 3, alignItems: "center", justifyContent: "center" }}>
+            <div style={{ display: "flex", flex: 2, alignItems: "center", justifyContent: "center" }}>
                 <Chat className="mainIcon" />
             </div>
-
-            <div style={{ display: "flex", flex: 5, alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
+            <Box className={classes.container}>
                 <InputBase placeholder="帳號" className={classes.input} value={email} onChange={(e) => setEmail(e.target.value)} error={true} />
                 <InputBase placeholder="密碼" className={classes.input} value={password} onChange={(e) => setPassword(e.target.value)} password="true" />
-                <div style={{ display: "flex", flexDirection: "row", margin: 10 }}>
+                <div style={{ display: "flex", margin: 10, width: "100%", }}>
                     <Button variant="contained" color="primary" className={classes.btn} onClick={() => signInWithEmailAndPassword(email, password)}>
                         登入
                     </Button>
@@ -126,13 +136,18 @@ export default function SignIn() {
                 <Divider orientation="horizontal" className={classes.divider} />
                 <Button variant="contained" className={classes.google}
                     startIcon={<Google className="logoIcon" />}
-                    onClick={SignInWithGoogle}><span className="loginText">Sign In With Google  </span></Button>
-                <Button variant="contained" className={classes.facebook}
+                    onClick={SignInWithGoogle}
+                    fullWidth
+                ><span className="loginText">Sign In With Google  </span></Button>
+                <Button variant="contained" className={classes.facebook} fullWidth
                     startIcon={<Github className="logoIcon" fill="white" />}
                     onClick={SignInWithGitHub}><span className="loginText" >Sign In With GitHub</span></Button>
-            </div>
+            </Box>
             <Sign signup={signup} setSignUp={setSignUp} />
             <Message messageOpen={messageOpen} setMessageOpen={setMessageOpen} message={message} />
-        </div >
+            <div >
+                <Email className="emailIcon" />
+            </div>
+        </Box >
     )
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { ChatEngine, getMyData } from 'react-chat-engine'
 import axios from "axios";
-import { auth } from "../firebase";
+import { auth } from "../firebaseConfig";
 export default function ChatEngine_() {
     const { uid, displayName, email } = auth.currentUser;
 
