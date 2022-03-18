@@ -96,14 +96,14 @@ body {
 .sent{
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-end;;
   margin:10px;
 }
 
 .receive{
   display: flex;
   flex-direction: row-reverse;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-end;
   margin:10px;
 }

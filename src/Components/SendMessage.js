@@ -2,18 +2,15 @@ import { InputBase, IconButton } from "@material-ui/core";
 import React, { useState, useRef, useContext } from "react";
 import { auth, db } from "../firebaseConfig";
 import { ReactComponent as Plane } from "../img/plane.svg";
-import { ReactComponent as Image } from "../img/image.svg";
 import firebase from "firebase";
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import { Context } from "../Context";
+
 
 
 
 export default function SendMessage({ scroll }) {
     const [message, setMessage] = useState("");
-    const myContext = useContext(Context);
-    const inputRef = useRef(null);
     const useStyles = makeStyles((theme) => ({
         container: {
             backgroundColor: "steelblue",
@@ -51,45 +48,28 @@ export default function SendMessage({ scroll }) {
         }
     }));
     const classes = useStyles();
-    const sendEvent = async (e, type) => {
-        e.preventDefault()
-        const { uid, photoURL, displayName } = auth.currentUser;
+    const sendEvent = async (e) => {
+        e.preventDefault();
+        const { uid, } = auth.currentUser;
         let info = {
             uid,
-            createAt: firebase.firestore.FieldValue.serverTimestamp()
-        }
-        if (type === "text") {
-            info.text = message;
-            setMessage("")
-        } else if (type === "img") {
-            info.img = true;
+            createAt: firebase.firestore.FieldValue.serverTimestamp(),
+            text: message
         }
         const doc = await db.collection("messages").add(info);
-        console.log(e.target.files)
-        if (type === "img") {
-            myContext.setImg(prev => ({ ...prev, [doc.id]: e.target.files }))
-        }
         scroll.current.scrollIntoView({ behavior: "smooth" })
     }
     return (
 
-        <form onSubmit={e => sendEvent(e, "text")} className={classes.container}>
+        <Box className={classes.container}>
             <Box className={classes.sendLeft}>
-                <input ref={inputRef}
-                    style={{ display: 'none' }}
-                    accept=".jpg, .jpeg, .png"
-                    id="contained-button-file"
-                    multiple type="file"
-                    onChange={(e) => sendEvent(e, "img")}
-                />
-                <Image className={classes.sendIcon} fill="white" onClick={() => inputRef.current.click()} />
                 <InputBase placeholder="message..." value={message} onChange={(e) => setMessage(e.target.value)}
                     className={classes.inputBase} />
             </Box>
             <Box className={classes.sendRight}>
-                <IconButton type="submit" ><Plane className={classes.sendIcon} fill="white" /></IconButton>
+                <IconButton onClick={(e) => sendEvent(e)} ><Plane className={classes.sendIcon} fill="white" /></IconButton>
             </Box>
-        </form>
+        </Box>
 
     )
 }
