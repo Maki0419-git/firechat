@@ -48,8 +48,8 @@ export default function SendMessage({ scroll }) {
         }
     }));
     const classes = useStyles();
-    const sendEvent = async (e) => {
-        e.preventDefault();
+    const sendEvent = async () => {
+
         const { uid, } = auth.currentUser;
         let info = {
             uid,
@@ -63,11 +63,14 @@ export default function SendMessage({ scroll }) {
 
         <Box className={classes.container}>
             <Box className={classes.sendLeft}>
-                <InputBase placeholder="message..." value={message} onChange={(e) => setMessage(e.target.value)}
-                    className={classes.inputBase} />
+                <InputBase placeholder="message..." value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className={classes.inputBase}
+                    onKeyPress={(e) => e.key === 'Enter' && sendEvent()}
+                />
             </Box>
             <Box className={classes.sendRight}>
-                <IconButton onClick={(e) => sendEvent(e)} ><Plane className={classes.sendIcon} fill="white" /></IconButton>
+                <IconButton onClick={sendEvent} ><Plane className={classes.sendIcon} fill="white" /></IconButton>
             </Box>
         </Box>
 
