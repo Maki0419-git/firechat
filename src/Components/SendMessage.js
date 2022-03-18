@@ -1,16 +1,19 @@
 import { InputBase, IconButton } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { auth, db } from "../firebaseConfig";
 import { ReactComponent as Plane } from "../img/plane.svg";
 import { ReactComponent as Image } from "../img/image.svg";
 import firebase from "firebase";
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
+import { Context } from "../Context";
 
 
 
 export default function SendMessage({ scroll }) {
     const [message, setMessage] = useState("");
+    const myContext = useContext(Context);
+    const inputRef = useRef(null);
     const useStyles = makeStyles((theme) => ({
         container: {
             backgroundColor: "steelblue",
@@ -43,7 +46,8 @@ export default function SendMessage({ scroll }) {
         },
         sendIcon: {
             height: "5vh",
-            width: "5vh"
+            width: "5vh",
+            cursor: "pointer"
         }
     }));
     const classes = useStyles();
@@ -60,11 +64,19 @@ export default function SendMessage({ scroll }) {
         setMessage("")
 
     }
+    const handleImgChange = (e) => myContext.setImg(e.target.files)
     return (
 
         <form onSubmit={sendMessage} className={classes.container}>
             <Box className={classes.sendLeft}>
-                <Image className={classes.sendIcon} fill="white" />
+                <input ref={inputRef}
+                    style={{ display: 'none' }}
+                    accept=".jpg, .jpeg, .png"
+                    id="contained-button-file"
+                    multiple type="file"
+                    onChange={handleImgChange}
+                />
+                <Image className={classes.sendIcon} fill="white" onClick={() => inputRef.current.click()} />
                 <InputBase placeholder="message..." value={message} onChange={(e) => setMessage(e.target.value)}
                     className={classes.inputBase} />
             </Box>

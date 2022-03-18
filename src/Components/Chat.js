@@ -5,6 +5,7 @@ import SendMessage from "./SendMessage";
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
+import ImagePreview from "./ImagePreview";
 
 const defaultProps = {
     bgcolor: '#DCDCDC',
@@ -80,6 +81,7 @@ export default function Chat() {
                         <Avatar className={classes.large} style={{ backgroundColor: stringToHslColor(uid, 30, 85) }}>{uid.split('')[1]}</Avatar>
                     </div>
                 ))}
+                {/* <ImagePreview /> */}
             </Box>
             <SendMessage scroll={scroll} />
             <div ref={scroll}></div>
