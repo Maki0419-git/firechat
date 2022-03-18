@@ -51,30 +51,36 @@ export default function SendMessage({ scroll }) {
         }
     }));
     const classes = useStyles();
-    async function sendMessage(e) {
+    const sendEvent = async (e, type) => {
         e.preventDefault()
         const { uid, photoURL, displayName } = auth.currentUser;
-        console.log(displayName);
-        await db.collection("messages").add({
-            text: message,
+        let info = {
             uid,
             createAt: firebase.firestore.FieldValue.serverTimestamp()
-        })
+        }
+        if (type === "text") {
+            info.text = message;
+            setMessage("")
+        } else if (type === "img") {
+            info.img = true;
+        }
+        const doc = await db.collection("messages").add(info);
+        console.log(e.target.files)
+        if (type === "img") {
+            myContext.setImg(prev => ({ ...prev, [doc.id]: e.target.files }))
+        }
         scroll.current.scrollIntoView({ behavior: "smooth" })
-        setMessage("")
-
     }
-    const handleImgChange = (e) => myContext.setImg(e.target.files)
     return (
 
-        <form onSubmit={sendMessage} className={classes.container}>
+        <form onSubmit={e => sendEvent(e, "text")} className={classes.container}>
             <Box className={classes.sendLeft}>
                 <input ref={inputRef}
                     style={{ display: 'none' }}
                     accept=".jpg, .jpeg, .png"
                     id="contained-button-file"
                     multiple type="file"
-                    onChange={handleImgChange}
+                    onChange={(e) => sendEvent(e, "img")}
                 />
                 <Image className={classes.sendIcon} fill="white" onClick={() => inputRef.current.click()} />
                 <InputBase placeholder="message..." value={message} onChange={(e) => setMessage(e.target.value)}

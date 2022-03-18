@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'flex-end',
     },
     img: {
-        width: 190,
+        // width: 190,
         height: "30vh",
         objectFit: "cover",
         border: "#888888 solid 1px",
@@ -31,15 +31,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const ImagePreview = (files) => {
+const ImagePreview = ({ id }) => {
     const myContext = useContext(Context);
     const classes = useStyles();
-
+    console.log(myContext.Img);
+    console.log(id)
     return (
         <div className={classes.root}>
             <div className={classes.imgContainer}>
 
-                {Object.values(myContext.Img).map((item, index) => (
+                {id && myContext.Img[id] && Object.values(myContext.Img[id]).map((item, index) => (
 
                     <img src={URL.createObjectURL(item)} alt={""} key={index} className={classes.img} />
 

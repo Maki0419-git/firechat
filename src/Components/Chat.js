@@ -32,7 +32,7 @@ export default function Chat() {
         container: {
             height: '100vh',
         },
-        chat: {
+        text: {
             display: "flex",
             flexDirection: "column",
             height: "84vh",
@@ -40,6 +40,14 @@ export default function Chat() {
             top: "8vh",
             overflowY: "scroll"
         },
+        // img: {
+        //     display: "flex",
+        //     flexDirection: "column",
+        //     height: "84vh",
+        //     position: "relative",
+        //     top: "8vh",
+        //     overflowY: "scroll"
+        // },
         large: {
             width: theme.spacing(6),
             height: theme.spacing(6),
@@ -67,7 +75,7 @@ export default function Chat() {
         <Box className={classes.container}>
             <SignOut />
             <Box className={classes.chat} >
-                {messages.map(({ id, text, uid, createAt }) => (
+                {messages.map(({ id, text, uid, img, createAt }) => (
                     <div className={uid === auth.currentUser.uid ? "sent" : "receive"} key={id} >
                         <span style={{ fontSize: 12, color: "#888888" }}>{
                             new Intl.DateTimeFormat("zh-TW", {
@@ -75,9 +83,11 @@ export default function Chat() {
                                 minute: "numeric"
                             }).format(new Date(createAt * 1000))
                         }</span>
-                        <Box borderRadius={16} {...defaultProps}>
-                            <p style={{ paddingLeft: 10, paddingRight: 10 }}>{text}</p>
-                        </Box>
+                        {text &&
+                            <Box borderRadius={16} {...defaultProps}>
+                                <p style={{ paddingLeft: 10, paddingRight: 10 }}>{text}</p>
+                            </Box>}
+                        {img && <ImagePreview id={id} />}
                         <Avatar className={classes.large} style={{ backgroundColor: stringToHslColor(uid, 30, 85) }}>{uid.split('')[1]}</Avatar>
                     </div>
                 ))}
