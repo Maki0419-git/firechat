@@ -4,7 +4,7 @@ import SignOut from "./SignOut";
 import SendMessage from "./SendMessage";
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-
+import Avatar from '@material-ui/core/Avatar';
 
 const defaultProps = {
     bgcolor: '#DCDCDC',
@@ -13,6 +13,16 @@ const defaultProps = {
 
 
 };
+
+function stringToHslColor(str, s, l) {
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+
+    var h = hash % 360;
+    return 'hsl(' + h + ', ' + s + '%, ' + l + '%)';
+}
 
 export default function Chat() {
     const [messages, setMessages] = useState([])
@@ -26,8 +36,13 @@ export default function Chat() {
             flexDirection: "column",
             height: "84vh",
             position: "relative",
-            top: "8vh"
-        }
+            top: "8vh",
+            overflowY: "scroll"
+        },
+        large: {
+            width: theme.spacing(6),
+            height: theme.spacing(6),
+        },
     }));
     const classes = useStyles();
     useEffect(() => {
@@ -51,9 +66,9 @@ export default function Chat() {
         <Box className={classes.container}>
             <SignOut />
             <Box className={classes.chat} >
-                {messages.map(({ id, text, photoURL, uid, createAt }) => (
+                {messages.map(({ id, text, uid, createAt }) => (
                     <div className={uid === auth.currentUser.uid ? "sent" : "receive"} key={id} >
-                        <span style={{ fontSize: 12, alignItems: "flex-end", display: "flex", position: "relative", bottom: 20, color: "#888888" }}>{
+                        <span style={{ fontSize: 12, color: "#888888" }}>{
                             new Intl.DateTimeFormat("zh-TW", {
                                 hour: "numeric",
                                 minute: "numeric"
@@ -62,7 +77,7 @@ export default function Chat() {
                         <Box borderRadius={16} {...defaultProps}>
                             <p style={{ paddingLeft: 10, paddingRight: 10 }}>{text}</p>
                         </Box>
-                        <img src={photoURL} alt="" style={{ borderRadius: "50%", width: 50, height: 50 }} />
+                        <Avatar className={classes.large} style={{ backgroundColor: stringToHslColor(uid, 30, 85) }}>{uid.split('')[1]}</Avatar>
                     </div>
                 ))}
             </Box>

@@ -39,6 +39,10 @@ export default function SignIn() {
                 setMessage("密碼錯誤")
                 setMessageOpen(true)
             }
+            else if (error.code === "auth/user-not-found") {
+                setMessage("無此帳號")
+                setMessageOpen(true)
+            }
         }
     }, [error])
 
@@ -48,14 +52,22 @@ export default function SignIn() {
         try {
             await auth.signInWithPopup(provider)
 
-        } catch (e) { console.log("e:" + e) }
+        } catch (e) {
+            if (e.code === "auth/account-exists-with-different-credential") {
+                alert("您曾使用另一種登入方式進行登入")
+            }
+        }
     }
     async function SignInWithGitHub() {
         const provider = new firebase.auth.GithubAuthProvider();
         try {
             await auth.signInWithPopup(provider)
 
-        } catch (e) { console.log("e:" + e.code) }
+        } catch (e) {
+            if (e.code === "auth/account-exists-with-different-credential") {
+                alert("您曾使用另一種登入方式進行登入")
+            }
+        }
     }
 
 
@@ -124,7 +136,7 @@ export default function SignIn() {
             </div>
             <Box className={classes.container}>
                 <InputBase placeholder="帳號" className={classes.input} value={email} onChange={(e) => setEmail(e.target.value)} error={true} />
-                <InputBase placeholder="密碼" className={classes.input} value={password} onChange={(e) => setPassword(e.target.value)} password="true" />
+                <InputBase placeholder="密碼" className={classes.input} value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
                 <div style={{ display: "flex", margin: 10, width: "100%", }}>
                     <Button variant="contained" color="primary" className={classes.btn} onClick={() => signInWithEmailAndPassword(email, password)}>
                         登入
@@ -143,8 +155,8 @@ export default function SignIn() {
                     startIcon={<Github className="logoIcon" fill="white" />}
                     onClick={SignInWithGitHub}><span className="loginText" >Sign In With GitHub</span></Button>
             </Box>
-            <Sign signup={signup} setSignUp={setSignUp} />
-            <Message messageOpen={messageOpen} setMessageOpen={setMessageOpen} message={message} />
+            <Sign signup={signup} setSignUp={setSignUp} setSignUpClose={() => setSignUp(false)} />
+            <Message messageOpen={messageOpen} setMessageClose={() => setMessageOpen(false)} message={message} />
             <div >
                 <Email className="emailIcon" />
             </div>

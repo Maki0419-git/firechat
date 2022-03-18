@@ -8,8 +8,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import { auth } from "../firebaseConfig";
-import firebase from "firebase";
-export default function SignUp({ signup, setSignUp }) {
+
+export default function SignUp({ signup, setSignUp, setSignUpClose }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [emailAlert, setEmailAlert] = useState("");
@@ -32,56 +32,55 @@ export default function SignUp({ signup, setSignUp }) {
             } else if (error.code === "auth/weak-password") {
                 setPasswordAlert("密碼長度需為6個字元以上")
                 setPasswordWrong(true)
+
             }
         }
     }, [error])
 
     return (
-        <div>
+        <Dialog open={signup}
+            onClose={setSignUpClose}
+        >
+            <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+            <DialogContent>
 
-            <Dialog open={signup}
-                //   onClose={handleClose} 
-                aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-                <DialogContent>
+                <TextField
+                    error={emailWrong}
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="Account"
+                    type="email"
+                    fullWidth
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    helperText={emailAlert}
+                />
+                <TextField
+                    error={passwordWrong}
+                    helperText={passwordAlert}
+                    autoFocus
+                    margin="dense"
+                    id="pass"
+                    label="Password"
+                    type="password"
+                    fullWidth
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+            </DialogContent>
+            <DialogActions>
+                <Button
+                    onClick={() => setSignUp(false)}
+                    color="primary">
+                    Cancel
+                </Button>
+                <Button
+                    onClick={() => createUserWithEmailAndPassword(email, password)}
+                    color="primary">
+                    Subscribe
+                </Button>
+            </DialogActions>
+        </Dialog>
 
-                    <TextField
-                        error={emailWrong}
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        label="Account"
-                        type="email"
-                        fullWidth
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        helperText={emailAlert}
-                    />
-                    <TextField
-                        error={passwordWrong}
-                        helperText={passwordAlert}
-                        autoFocus
-                        margin="dense"
-                        id="pass"
-                        label="Password"
-                        type="password"
-                        fullWidth
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button
-                        onClick={() => setSignUp(false)}
-                        color="primary">
-                        Cancel
-                    </Button>
-                    <Button
-                        onClick={() => createUserWithEmailAndPassword(email, password)}
-                        color="primary">
-                        Subscribe
-                    </Button>
-                </DialogActions>
-            </Dialog>
-        </div>
     );
 }

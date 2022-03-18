@@ -91,20 +91,19 @@ body {
   fill: "white";
 }
 
-.sendIcon{
-  height: 25px;
-  width: 25px;
-}
+
 
 .sent{
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   margin:10px;
 }
 
 .receive{
   display: flex;
   flex-direction: row-reverse;
+  align-items: center;
   justify-content: flex-end;
   margin:10px;
 }

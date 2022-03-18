@@ -17,17 +17,33 @@ export default function SendMessage({ scroll }) {
             position: "fixed",
             bottom: 0,
             width: "100%",
-            height: "8vh"
+            height: "8vh",
+            display: "flex",
+            justifyContent: "space-between",
         },
         sendLeft: {
             display: "flex",
             alignItems: "center",
-            flex: 6
+            width: "100%",
+            marginLeft: "1%"
         },
         sendRight: {
             display: "flex",
             alignItems: "center",
-            flex: 2
+
+        },
+        inputBase: {
+            backgroundColor: "white",
+            padding: 3,
+            border: "2px solid white",
+            borderRadius: "10px",
+            width: "100%",
+            alignItems: "center",
+            marginLeft: "1%"
+        },
+        sendIcon: {
+            height: "5vh",
+            width: "5vh"
         }
     }));
     const classes = useStyles();
@@ -38,7 +54,6 @@ export default function SendMessage({ scroll }) {
         await db.collection("messages").add({
             text: message,
             uid,
-            photoURL,
             createAt: firebase.firestore.FieldValue.serverTimestamp()
         })
         scroll.current.scrollIntoView({ behavior: "smooth" })
@@ -46,20 +61,17 @@ export default function SendMessage({ scroll }) {
 
     }
     return (
-        <Box className={classes.container}>
-            <form onSubmit={sendMessage} style={{ display: "flex", }}>
-                <Box className={classes.sendLeft}>
-                    <Image className="sendIcon" fill="white" />
-                    <InputBase placeholder="message..." value={message} onChange={(e) => setMessage(e.target.value)}
-                        style={{
-                            backgroundColor: "white", padding: 3, border: "2px solid white",
-                            borderRadius: "10px", width: "100%", alignItems: "center", margin: 5
-                        }} />
-                </Box>
-                <Box className={classes.sendRight}>
-                    <IconButton type="submit" ><Plane className="sendIcon" fill="white" /></IconButton>
-                </Box>
-            </form>
-        </Box>
+
+        <form onSubmit={sendMessage} className={classes.container}>
+            <Box className={classes.sendLeft}>
+                <Image className={classes.sendIcon} fill="white" />
+                <InputBase placeholder="message..." value={message} onChange={(e) => setMessage(e.target.value)}
+                    className={classes.inputBase} />
+            </Box>
+            <Box className={classes.sendRight}>
+                <IconButton type="submit" ><Plane className={classes.sendIcon} fill="white" /></IconButton>
+            </Box>
+        </form>
+
     )
 }

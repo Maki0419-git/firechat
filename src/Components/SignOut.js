@@ -19,13 +19,17 @@ export default function SignOut() {
             zIndex: 2,
             width: "100%",
             height: "8vh",
+        },
+        sendIcon: {
+            height: "4vh",
+            width: "4vh"
         }
     }));
     const classes = useStyles();
     return (
         <Box className={classes.container}>
             <span className="NavText">Let's Chat!</span>
-            <IconButton onClick={() => auth.signOut()}><Logout className="sendIcon" fill="white" /></IconButton>
+            <IconButton onClick={() => auth.signOut()}><Logout className={classes.sendIcon} fill="white" /></IconButton>
         </Box>
     )
 }
